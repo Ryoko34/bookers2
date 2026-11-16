@@ -1,0 +1,25 @@
+<head>
+</head>
+<body>
+  <h2>Editing Book</h2.
+  <%= form_with model: Book do |f| %>
+    <div class="field">
+      <%= f.label :Title %><br>
+      <%= f.text_field :name, autofocus: true, id: "inputName" %>
+    </div>
+    <div class="field">
+      <%= f.label :Opinion %><br>
+      <%= f.file_field :body, autofocus: true, id: "inputOpinion" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update Book" %>
+    </div>
+  <% end %>
+  <nav>
+    <%= link_to 'Show', book_path(@book) %>
+     | 
+    <%= link_to 'Back', '/books' %>
+  </nav>
+</body>
+<footer>
+</footer>

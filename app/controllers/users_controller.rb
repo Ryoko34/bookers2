@@ -11,12 +11,13 @@ allow_unauthenticated_access only: [:new, :create]
     if @user.save   # sign up後は新規登録画面かつマイページに遷移したい
       redirect_to new_session_path, notice: "Welcome! You have signed up successfully."
     else
-      render :new, status: unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   def show
     @user = User.find(params[:id])
+    @book = Book.new
     @books = @user.books
   end
 
@@ -25,9 +26,12 @@ allow_unauthenticated_access only: [:new, :create]
   end
 
   def update
-    user = User.find(params[:id])
-    user.update
-    redirect_to user_path
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "You have updated user successfully."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private

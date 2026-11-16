@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def after_authentication_url
-    about_path #ログイン後は新規投稿画面かつマイページに遷移したい
+    user_path(Current.user) #ログイン後は新規投稿画面かつマイページに遷移したい
   end
 
 end
