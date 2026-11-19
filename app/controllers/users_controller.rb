@@ -15,10 +15,16 @@ allow_unauthenticated_access only: [:new, :create]
     end
   end
 
+  def index
+    @user = Current.user
+    @book = Book.new
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @book = Book.new
-    @books = @user.books
+    @books = @user.books.page(params[:page])
   end
 
   def edit
