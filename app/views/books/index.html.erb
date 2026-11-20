@@ -1,7 +1,18 @@
-
 <p id="notice"></p>
 
 <div class="container px-5 px-sm-0">
+
+  <% if @book.errors.any? %>
+    <div class="error_explanation">
+      <h3><%= pluralize(@book.errors.count, "error") %> prohibited this obj from being saved:</h3>
+      <ul>
+        <% @book.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="row">
     <div class="col-md-3">
       <%= render 'layouts/sidebar', user: @user, book: @book %>

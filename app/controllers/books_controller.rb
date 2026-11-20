@@ -29,9 +29,12 @@ class BooksController < ApplicationController
   end
 
   def update
-    book = Book.find(params[:id])
-    book.update(user_params)
-    redirect_to book_path(book.id)
+    @book = Book.find(params[:id])
+    if @book.update(user_params)
+      redirect_to book_path(book.id), notice: "You have updated book successfully."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
