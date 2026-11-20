@@ -8,3 +8,9 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ *,
+ *::before,
+ *::after {
+  box-sizing: border-box;
+ }
